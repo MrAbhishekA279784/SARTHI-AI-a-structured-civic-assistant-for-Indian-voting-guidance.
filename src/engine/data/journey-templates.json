@@ -1,0 +1,53 @@
+{
+  "first_time": [
+    {
+      "id": "step_1_eligibility",
+      "order": 1,
+      "title": "Check Eligibility",
+      "description": "Ensure you meet the basic requirements to vote in India.",
+      "checklistItems": [
+        { "id": "chk_1_1", "label": "I am an Indian Citizen" },
+        { "id": "chk_1_2", "label": "I am 18 years or older as of Jan 1" }
+      ],
+      "trustSource": "ECI Guidelines for New Voters"
+    },
+    {
+      "id": "step_2_register",
+      "order": 2,
+      "title": "Register to Vote",
+      "description": "Apply for your Voter ID card using Form 6.",
+      "checklistItems": [
+        { "id": "chk_2_1", "label": "Keep passport size photo ready" },
+        { "id": "chk_2_2", "label": "Keep age and address proof ready" },
+        { "id": "chk_2_3", "label": "Submit Form 6 on NVSP or Voter Helpline App" }
+      ],
+      "trustSource": "ECI Voter Registration Process"
+    }
+  ],
+  "registered": [
+    {
+      "id": "step_1_verify",
+      "order": 1,
+      "title": "Verify Name in Roll",
+      "description": "Ensure your name exists in the current electoral roll.",
+      "checklistItems": [
+        { "id": "chk_1_1", "label": "Search name on electoral search portal" },
+        { "id": "chk_1_2", "label": "Verify details (name, age, relative's name)" }
+      ],
+      "trustSource": "ECI Electoral Search"
+    }
+  ],
+  "relocated": [
+    {
+      "id": "step_1_shift",
+      "order": 1,
+      "title": "Update Address",
+      "description": "Transfer your vote to your new constituency or update address within same constituency.",
+      "checklistItems": [
+        { "id": "chk_1_1", "label": "Get address proof for new location" },
+        { "id": "chk_1_2", "label": "Submit Form 8 for shifting of residence" }
+      ],
+      "trustSource": "ECI Form 8 Guidelines"
+    }
+  ]
+}

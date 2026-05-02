@@ -1,0 +1,23 @@
+[
+  {
+    "code": "MH",
+    "name": "Maharashtra",
+    "nameHi": "महाराष्ट्र",
+    "electoralPortal": "https://ceo.maharashtra.gov.in",
+    "helpline": "1950"
+  },
+  {
+    "code": "KA",
+    "name": "Karnataka",
+    "nameHi": "कर्नाटक",
+    "electoralPortal": "https://ceo.karnataka.gov.in",
+    "helpline": "1950"
+  },
+  {
+    "code": "DL",
+    "name": "Delhi",
+    "nameHi": "दिल्ली",
+    "electoralPortal": "https://ceodelhi.gov.in",
+    "helpline": "1950"
+  }
+]

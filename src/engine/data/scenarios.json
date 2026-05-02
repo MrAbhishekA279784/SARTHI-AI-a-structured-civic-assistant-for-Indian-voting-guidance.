@@ -1,0 +1,455 @@
+[
+  {
+    "key": "lost_voter_id",
+    "triggers": ["lost voter id", "voter id lost", "epic card lost", "lost epic", "lost voter id card"],
+    "title": "I lost my voter ID",
+    "answer": "You can still vote if your name is in the voter list. Carry any one alternate photo ID to the polling booth.",
+    "steps": [
+      "Check if your name is on the voter list at nvsp.in",
+      "Carry any ONE alternate photo ID to the polling booth",
+      "Apply for a duplicate EPIC card using Form 002 on nvsp.in"
+    ],
+    "alternateDocuments": ["Aadhaar Card", "Passport", "PAN Card", "Driving License", "Bank Passbook with Photo"],
+    "links": [
+      { "label": "Check Voter List", "url": "https://electoralsearch.eci.gov.in" },
+      { "label": "Apply for Duplicate EPIC", "url": "https://www.nvsp.in" }
+    ],
+    "trust": {
+      "source": "Election Commission of India — Handbook for Presiding Officers",
+      "confidence": "high",
+      "lastUpdated": "2026-04-20"
+    }
+  },
+  {
+    "key": "eligibility_age",
+    "triggers": ["minimum age vote", "age to vote india", "how old to vote", "18 years vote", "voting age"],
+    "title": "Minimum voting age",
+    "answer": "You can vote in India if you are 18 years or older on the qualifying date (January 1 of the electoral roll revision year).",
+    "steps": [
+      "Ensure your age is 18+ on the qualifying date",
+      "Register as a voter through NVSP or local BLO office",
+      "Verify your name in the voter list before election day"
+    ],
+    "alternateDocuments": [],
+    "links": [
+      { "label": "NVSP Portal", "url": "https://www.nvsp.in" },
+      { "label": "ECI Official Site", "url": "https://eci.gov.in" }
+    ],
+    "trust": {
+      "source": "ECI — Representation of the People Act, 1950",
+      "confidence": "high",
+      "lastUpdated": "2026-04-20"
+    }
+  },
+  {
+    "key": "citizenship_requirement",
+    "triggers": ["who can vote india", "citizen voting", "citizenship vote", "foreigner vote india", "eligibility vote"],
+    "title": "Citizenship requirement for voting",
+    "answer": "Only Indian citizens are eligible to vote in Indian elections. Overseas citizens may register as NRI voters.",
+    "steps": [
+      "Confirm your Indian citizenship",
+      "Register in your constituency via NVSP",
+      "Carry valid identity proof on election day"
+    ],
+    "alternateDocuments": ["Aadhaar Card", "Passport", "Citizenship Certificate"],
+    "links": [
+      { "label": "NVSP Registration", "url": "https://www.nvsp.in" }
+    ],
+    "trust": {
+      "source": "ECI — Representation of the People Act, 1950",
+      "confidence": "high",
+      "lastUpdated": "2026-04-20"
+    }
+  },
+  {
+    "key": "first_time_voter",
+    "triggers": ["first time voter steps", "first time voter", "new voter", "never voted before", "how to vote first time"],
+    "title": "First-time voter registration",
+    "answer": "First-time voters must register using Form 6 and verify their details in the voter list before election day.",
+    "steps": [
+      "Apply using Form 6 on NVSP or at the local BLO office",
+      "Upload required identity and address proof documents",
+      "Check the voter list before election day to confirm registration"
+    ],
+    "alternateDocuments": ["Aadhaar Card", "Passport", "PAN Card", "Class 10 Marksheet (for age proof)"],
+    "links": [
+      { "label": "Apply Form 6", "url": "https://www.nvsp.in" },
+      { "label": "Search Voter List", "url": "https://electoralsearch.eci.gov.in" }
+    ],
+    "trust": {
+      "source": "ECI — Guidelines for New Voter Registration",
+      "confidence": "high",
+      "lastUpdated": "2026-04-20"
+    }
+  },
+  {
+    "key": "register_online",
+    "triggers": ["register voter online", "apply voter id online", "online voter registration", "nvsp registration", "how to register vote"],
+    "title": "Online voter registration",
+    "answer": "You can register online through the National Voters Service Portal (NVSP) using Form 6.",
+    "steps": [
+      "Visit the NVSP website at nvsp.in",
+      "Select 'New Voter Registration' and fill Form 6",
+      "Upload identity proof, address proof, and photograph",
+      "Submit application and note the reference number for tracking"
+    ],
+    "alternateDocuments": [],
+    "links": [
+      { "label": "NVSP Portal", "url": "https://www.nvsp.in" },
+      { "label": "Track Application", "url": "https://www.nvsp.in/Account/Login" }
+    ],
+    "trust": {
+      "source": "ECI — NVSP User Guide",
+      "confidence": "high",
+      "lastUpdated": "2026-04-20"
+    }
+  },
+  {
+    "key": "register_offline",
+    "triggers": ["offline voter registration", "register voter offline", "blo office registration", "register without internet"],
+    "title": "Offline voter registration",
+    "answer": "Offline registration can be done by visiting your local Booth Level Officer (BLO) or District Election Office.",
+    "steps": [
+      "Visit your local BLO or District Election Office",
+      "Fill Form 6 in person and attach required documents",
+      "Submit the form and collect the acknowledgement receipt",
+      "Track your application status through the receipt number"
+    ],
+    "alternateDocuments": ["Aadhaar Card", "Passport", "Driving License"],
+    "links": [
+      { "label": "Find Your BLO", "url": "https://electoralsearch.eci.gov.in" },
+      { "label": "NVSP Portal", "url": "https://www.nvsp.in" }
+    ],
+    "trust": {
+      "source": "ECI — BLO Handbook",
+      "confidence": "high",
+      "lastUpdated": "2026-04-20"
+    }
+  },
+  {
+    "key": "documents_registration",
+    "triggers": ["documents for voter registration", "voter id documents needed", "what documents do i need", "documents for voting", "id proof voting"],
+    "title": "Documents required for registration",
+    "answer": "You need one identity proof and one address proof document for voter registration.",
+    "steps": [
+      "Provide one identity proof: Aadhaar, Passport, PAN Card, or Driving License",
+      "Provide one address proof: Aadhaar, Utility Bill, Bank Statement, or Ration Card",
+      "Upload a recent passport-size photograph"
+    ],
+    "alternateDocuments": ["Aadhaar Card", "Passport", "PAN Card", "Driving License", "Utility Bill", "Bank Statement", "Ration Card"],
+    "links": [
+      { "label": "NVSP — Document Guidelines", "url": "https://www.nvsp.in" }
+    ],
+    "trust": {
+      "source": "ECI — Form 6 Instructions",
+      "confidence": "high",
+      "lastUpdated": "2026-04-20"
+    }
+  },
+  {
+    "key": "duplicate_epic",
+    "triggers": ["duplicate voter id apply", "get new voter id", "duplicate epic", "replace voter card", "reissue voter id"],
+    "title": "Apply for duplicate voter ID",
+    "answer": "You can request a duplicate voter ID (EPIC) through Form 002 on the NVSP portal.",
+    "steps": [
+      "Login to the NVSP portal at nvsp.in",
+      "Navigate to 'Replacement of EPIC' and fill Form 002",
+      "Submit the request and track using reference number"
+    ],
+    "alternateDocuments": [],
+    "links": [
+      { "label": "NVSP — Form 002", "url": "https://www.nvsp.in" }
+    ],
+    "trust": {
+      "source": "ECI — EPIC Replacement Guidelines",
+      "confidence": "high",
+      "lastUpdated": "2026-04-20"
+    }
+  },
+  {
+    "key": "change_address",
+    "triggers": ["change address voter id", "update address voter", "address change epic", "new address voter card"],
+    "title": "Change address on voter ID",
+    "answer": "Address changes on your voter ID require submission of Form 8A through the NVSP portal or your local election office.",
+    "steps": [
+      "Fill Form 8A online at nvsp.in or at the local election office",
+      "Upload new address proof document",
+      "Submit and track the application using the reference number"
+    ],
+    "alternateDocuments": ["Aadhaar Card", "Utility Bill", "Bank Statement", "Rent Agreement"],
+    "links": [
+      { "label": "NVSP — Form 8A", "url": "https://www.nvsp.in" }
+    ],
+    "trust": {
+      "source": "ECI — Electoral Roll Correction Guidelines",
+      "confidence": "high",
+      "lastUpdated": "2026-04-20"
+    }
+  },
+  {
+    "key": "shifted_city",
+    "triggers": ["moved to new city voting", "shifted city voter", "relocated vote", "transferred voter id", "new city vote"],
+    "title": "Voting after relocating to a new city",
+    "answer": "When you move to a new city, you must register in your new constituency and request deletion from the old one.",
+    "steps": [
+      "Apply for new voter registration (Form 6) in your new constituency",
+      "Request deletion of old entry (Form 7) from the previous constituency",
+      "Verify your name in the new constituency voter list before election day"
+    ],
+    "alternateDocuments": ["New Address Proof", "Aadhaar (updated address)"],
+    "links": [
+      { "label": "NVSP — New Registration", "url": "https://www.nvsp.in" },
+      { "label": "Search Voter List", "url": "https://electoralsearch.eci.gov.in" }
+    ],
+    "trust": {
+      "source": "ECI — Continuous Updation of Electoral Roll Guidelines",
+      "confidence": "high",
+      "lastUpdated": "2026-04-20"
+    }
+  },
+  {
+    "key": "name_missing",
+    "triggers": ["name not in voter list", "name missing voter list", "voter list no name", "not registered voter"],
+    "title": "Name missing from voter list",
+    "answer": "If your name is missing from the voter list, you must register again using Form 6.",
+    "steps": [
+      "Search the voter list online at electoralsearch.eci.gov.in to confirm",
+      "Apply using Form 6 on NVSP with all required documents",
+      "Wait for verification and check the updated voter list"
+    ],
+    "alternateDocuments": [],
+    "links": [
+      { "label": "Search Voter List", "url": "https://electoralsearch.eci.gov.in" },
+      { "label": "Apply Form 6", "url": "https://www.nvsp.in" }
+    ],
+    "trust": {
+      "source": "ECI — Electoral Roll Revision Guidelines",
+      "confidence": "high",
+      "lastUpdated": "2026-04-20"
+    }
+  },
+  {
+    "key": "name_correction",
+    "triggers": ["correct name voter id", "name wrong voter id", "spelling mistake voter", "voter id correction"],
+    "title": "Correct name on voter ID",
+    "answer": "Name corrections on your voter ID can be made using Form 8 through the NVSP portal.",
+    "steps": [
+      "Fill Form 8 on nvsp.in with correct details",
+      "Upload supporting proof showing correct name",
+      "Submit the correction request and track status"
+    ],
+    "alternateDocuments": ["Aadhaar Card", "Passport", "PAN Card"],
+    "links": [
+      { "label": "NVSP — Form 8", "url": "https://www.nvsp.in" }
+    ],
+    "trust": {
+      "source": "ECI — Electoral Roll Correction Guidelines",
+      "confidence": "high",
+      "lastUpdated": "2026-04-20"
+    }
+  },
+  {
+    "key": "polling_booth",
+    "triggers": ["find polling booth", "where is my booth", "polling station location", "booth location"],
+    "title": "Find your polling booth",
+    "answer": "Your assigned polling booth details can be found online through the ECI Electoral Search portal.",
+    "steps": [
+      "Visit electoralsearch.eci.gov.in",
+      "Enter your EPIC number or personal details",
+      "View your assigned booth name, address, and location on map"
+    ],
+    "alternateDocuments": [],
+    "links": [
+      { "label": "Electoral Search", "url": "https://electoralsearch.eci.gov.in" },
+      { "label": "Voter Helpline App", "url": "https://play.google.com/store/apps/details?id=com.eci.citizen" }
+    ],
+    "trust": {
+      "source": "ECI — Booth Level Data",
+      "confidence": "high",
+      "lastUpdated": "2026-04-15"
+    }
+  },
+  {
+    "key": "vote_anywhere",
+    "triggers": ["can i vote anywhere india", "vote from any booth", "vote different city", "vote away from home"],
+    "title": "Can I vote from any polling booth?",
+    "answer": "No. You can vote only at your assigned polling booth in the constituency where you are registered.",
+    "steps": [
+      "Check your assigned booth at electoralsearch.eci.gov.in",
+      "Carry a valid photo ID to the assigned booth",
+      "Vote only at your designated booth — other booths will not allow entry"
+    ],
+    "alternateDocuments": [],
+    "links": [
+      { "label": "Find Your Booth", "url": "https://electoralsearch.eci.gov.in" }
+    ],
+    "trust": {
+      "source": "ECI — Polling Station Guidelines",
+      "confidence": "high",
+      "lastUpdated": "2026-04-20"
+    }
+  },
+  {
+    "key": "voting_time",
+    "triggers": ["voting timing india", "what time voting", "polling hours", "voting time", "when to vote"],
+    "title": "Voting hours in India",
+    "answer": "Voting is generally conducted between 7:00 AM and 6:00 PM, but timings may vary by state and phase.",
+    "steps": [
+      "Check the specific timing for your constituency on the ECI website",
+      "Reach your polling booth early to avoid long queues",
+      "Carry a valid photo ID — you won't be allowed to vote without one"
+    ],
+    "alternateDocuments": [],
+    "links": [
+      { "label": "ECI Schedule", "url": "https://eci.gov.in" }
+    ],
+    "trust": {
+      "source": "ECI — General Election Schedule Notification",
+      "confidence": "medium",
+      "lastUpdated": "2026-04-20"
+    }
+  },
+  {
+    "key": "queue_rules",
+    "triggers": ["long queue voting", "still in queue closing", "queue cutoff voting", "vote after 6pm queue"],
+    "title": "Queue rules on election day",
+    "answer": "If you are standing in the queue before the official closing time, you are entitled to cast your vote.",
+    "steps": [
+      "Stay in the queue — do not leave even after the announced closing time",
+      "Follow the instructions of the polling officers",
+      "Cast your vote when your turn comes, regardless of how long the queue takes"
+    ],
+    "alternateDocuments": [],
+    "links": [
+      { "label": "ECI Voter Guide", "url": "https://eci.gov.in" }
+    ],
+    "trust": {
+      "source": "ECI — Handbook for Presiding Officers",
+      "confidence": "high",
+      "lastUpdated": "2026-04-20"
+    }
+  },
+  {
+    "key": "mobile_restriction",
+    "triggers": ["phone allowed polling booth", "mobile phone voting booth", "camera inside booth", "phone restriction polling"],
+    "title": "Mobile phone rules at polling booths",
+    "answer": "Mobile phones are generally restricted inside polling booths. Keep your phone silent or leave it outside.",
+    "steps": [
+      "Keep your mobile phone on silent or switch it off",
+      "Follow the booth-specific rules announced by the Presiding Officer",
+      "Do not take photographs or record video inside the polling booth"
+    ],
+    "alternateDocuments": [],
+    "links": [
+      { "label": "ECI Guidelines", "url": "https://eci.gov.in" }
+    ],
+    "trust": {
+      "source": "ECI — Polling Booth Instructions",
+      "confidence": "medium",
+      "lastUpdated": "2026-04-20"
+    }
+  },
+  {
+    "key": "nri_voting",
+    "triggers": ["nri voting india", "overseas voter", "vote from abroad", "nri can vote", "overseas registration", "nri vote"],
+    "title": "NRI voting in India",
+    "answer": "NRI (Non-Resident Indian) citizens can vote but must be physically present at their assigned polling booth in India on election day.",
+    "steps": [
+      "Register as an overseas elector using Form 6A on NVSP",
+      "Travel to India and be present at your assigned constituency",
+      "Carry your passport and vote at the designated polling booth"
+    ],
+    "alternateDocuments": ["Valid Indian Passport"],
+    "links": [
+      { "label": "NVSP — Form 6A", "url": "https://www.nvsp.in" },
+      { "label": "Overseas Voter Info", "url": "https://eci.gov.in" }
+    ],
+    "trust": {
+      "source": "ECI — Overseas Electors Registration Guidelines",
+      "confidence": "high",
+      "lastUpdated": "2026-04-20"
+    }
+  },
+  {
+    "key": "senior_citizen",
+    "triggers": ["senior citizen voting help", "elderly voting assistance", "old age vote help", "80 plus voting", "disabled voter"],
+    "title": "Voting assistance for senior citizens",
+    "answer": "Senior citizens (80+) and persons with disabilities may receive special assistance at the polling booth, including priority entry and companion support.",
+    "steps": [
+      "Request priority queue access at the polling booth",
+      "Ask polling officers for assistance if needed",
+      "A companion of your choice can accompany you inside the booth (with officer's permission)"
+    ],
+    "alternateDocuments": [],
+    "links": [
+      { "label": "Accessible Elections", "url": "https://eci.gov.in" }
+    ],
+    "trust": {
+      "source": "ECI — Accessible Elections Guidelines",
+      "confidence": "high",
+      "lastUpdated": "2026-04-20"
+    }
+  },
+  {
+    "key": "fraud_vote",
+    "triggers": ["someone voted in my name", "fake vote cast", "vote fraud report", "impersonation voting"],
+    "title": "Someone voted in my name",
+    "answer": "If you suspect someone has cast a fraudulent vote in your name, report it immediately to the Presiding Officer at the polling booth.",
+    "steps": [
+      "Inform the Presiding Officer at your polling booth immediately",
+      "File a formal complaint — the officer will record a tendered ballot",
+      "You can cast a tendered vote which will be kept separately and counted if the fraud is confirmed"
+    ],
+    "alternateDocuments": [],
+    "links": [
+      { "label": "ECI Complaint Portal", "url": "https://eci.gov.in" },
+      { "label": "Voter Helpline: 1950", "url": "tel:1950" }
+    ],
+    "trust": {
+      "source": "ECI — Handbook for Presiding Officers, Section on Tendered Votes",
+      "confidence": "high",
+      "lastUpdated": "2026-04-20"
+    }
+  },
+  {
+    "key": "duplicate_registration",
+    "triggers": ["two voter ids", "multiple voter registration", "duplicate voter entry", "two registrations"],
+    "title": "Duplicate voter registration",
+    "answer": "Having multiple voter registrations is illegal. You must report and remove the duplicate entry.",
+    "steps": [
+      "Identify which registration you want to keep (based on current address)",
+      "File Form 7 on NVSP to delete the extra/old entry",
+      "Retain only one valid voter registration record"
+    ],
+    "alternateDocuments": [],
+    "links": [
+      { "label": "NVSP — Form 7 (Deletion)", "url": "https://www.nvsp.in" }
+    ],
+    "trust": {
+      "source": "ECI — Electoral Roll Purification Guidelines",
+      "confidence": "high",
+      "lastUpdated": "2026-04-20"
+    }
+  },
+  {
+    "key": "am_i_registered",
+    "triggers": ["am i registered", "check registration", "am i a voter", "voter status check", "is my name in list"],
+    "title": "Check voter registration status",
+    "answer": "You can check if you are registered to vote by searching the electoral roll online.",
+    "steps": [
+      "Visit electoralsearch.eci.gov.in",
+      "Search by EPIC number or personal details (name, age, constituency)",
+      "If found, note your polling booth details; if not, apply using Form 6"
+    ],
+    "alternateDocuments": [],
+    "links": [
+      { "label": "Electoral Search", "url": "https://electoralsearch.eci.gov.in" },
+      { "label": "NVSP Registration", "url": "https://www.nvsp.in" }
+    ],
+    "trust": {
+      "source": "ECI — Electoral Roll Search Portal",
+      "confidence": "high",
+      "lastUpdated": "2026-04-20"
+    }
+  }
+]

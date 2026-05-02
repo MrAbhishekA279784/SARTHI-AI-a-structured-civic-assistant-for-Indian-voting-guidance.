@@ -1,0 +1,8 @@
+{
+  "defaultElection": {
+    "registrationDeadline": "2026-05-04",
+    "correctionDeadline": "2026-05-14",
+    "mockPollingDay": "2026-04-28",
+    "electionDay": "2026-05-03"
+  }
+}
