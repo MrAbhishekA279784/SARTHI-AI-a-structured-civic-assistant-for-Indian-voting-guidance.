@@ -8,6 +8,7 @@ import Sidebar from '@/components/layout/Sidebar';
 import MobileHeader from '@/components/layout/MobileHeader';
 import BottomNav from '@/components/layout/BottomNav';
 import { Loader2 } from 'lucide-react';
+import { initJourneyIfEmpty } from '@/engine/initJourney';
 
 export default function MainLayout({
   children,

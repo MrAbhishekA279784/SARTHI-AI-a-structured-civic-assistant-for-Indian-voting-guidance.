@@ -12,6 +12,7 @@ import {
 } from 'firebase/auth';
 import { useAppStore } from '@/store/useAppStore';
 import { syncFromRemote } from '@/lib/sync';
+import { initJourneyIfEmpty } from '@/engine/initJourney';
 
 export function useAuth() {
   const [user, setUser] = useState<User | null>(null);
@@ -23,7 +24,12 @@ export function useAuth() {
       setUser(u);
       setLoading(false);
       if (u) {
-        syncFromRemote(u.uid).catch(() => {});
+        syncFromRemote(u.uid)
+          .catch(() => {})
+          .finally(() => {
+            // Ensure journey exists after sync (or sync failure)
+            initJourneyIfEmpty();
+          });
       }
     });
 
