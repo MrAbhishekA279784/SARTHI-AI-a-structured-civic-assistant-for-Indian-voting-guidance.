@@ -1,13 +1,17 @@
-import { getAnalytics, logEvent } from 'firebase/analytics';
-import { app } from './firebase';
+import { getApps, getApp } from 'firebase/app';
+import { getAnalytics, logEvent, isSupported } from 'firebase/analytics';
 
-export function trackEvent(
+export async function trackEvent(
   name: string,
   params?: Record<string, string | number | boolean>
-): void {
+): Promise<void> {
   try {
     if (typeof window === 'undefined') return;
-    const analytics = getAnalytics(app);
+    const supported = await isSupported();
+    if (!supported) return;
+    const analytics = getAnalytics(getApp());
     logEvent(analytics, name, params);
-  } catch {}
+  } catch {
+    // Analytics failure must never crash the app
+  }
 }

@@ -26,18 +26,28 @@ export async function POST(req: Request) {
 
     const prompt = `You are SARTHI, an Indian Election Assistant.
 Constraints:
-- Answer ONLY concerning Indian civic and voting domains.
+- Answer ONLY concerning Indian civic and voting domains, ECI data, India voting.
 - Provide factual, unbiased answers based on Election Commission of India guidelines.
 Return the response as a JSON object with this exact structure (no markdown, no extra text):
 {
-  "answer": "Brief overview of the answer",
-  "steps": ["Step 1", "Step 2", "Step 3"]
+  "answer": "string",
+  "steps": ["string"],
+  "documents": ["string"],
+  "links": [{"label": "string", "url": "string"}],
+  "confidence": "high",
+  "source": "gemini"
 }
 User question: "${query}"`;
 
     const result = await model.generateContent({
       contents: [{ role: 'user', parts: [{ text: prompt }] }],
-      generationConfig: { temperature: 0.3 }
+      generationConfig: { temperature: 0.3, maxOutputTokens: 1024 },
+      safetySettings: [
+        { category: 'HARM_CATEGORY_HARASSMENT' as any, threshold: 'BLOCK_MEDIUM_AND_ABOVE' as any },
+        { category: 'HARM_CATEGORY_HATE_SPEECH' as any, threshold: 'BLOCK_MEDIUM_AND_ABOVE' as any },
+        { category: 'HARM_CATEGORY_SEXUALLY_EXPLICIT' as any, threshold: 'BLOCK_MEDIUM_AND_ABOVE' as any },
+        { category: 'HARM_CATEGORY_DANGEROUS_CONTENT' as any, threshold: 'BLOCK_MEDIUM_AND_ABOVE' as any }
+      ]
     });
     const responseText = result.response.text();
     
@@ -61,8 +71,10 @@ User question: "${query}"`;
     return NextResponse.json({
       answer: parsed.answer,
       steps: parsed.steps,
-      source: 'gemini',
-      confidence: 'medium'
+      documents: parsed.documents || [],
+      links: parsed.links || [],
+      source: parsed.source || 'gemini',
+      confidence: parsed.confidence || 'high'
     }, { status: 200 });
 
   } catch (error) {
