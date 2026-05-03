@@ -26,8 +26,12 @@ export default function LoginPage() {
     try {
       await login(email, password);
       router.push('/dashboard');
-    } catch (err: any) {
-      setError(err.message || 'Failed to login');
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message || 'Failed to login');
+      } else {
+        setError('Failed to login');
+      }
     } finally {
       setLoading(false);
     }
@@ -39,8 +43,12 @@ export default function LoginPage() {
     try {
       await loginWithGoogle();
       router.push('/dashboard');
-    } catch (err: any) {
-      setError(err.message || 'Failed to login with Google');
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message || 'Failed to login with Google');
+      } else {
+        setError('Failed to login with Google');
+      }
     } finally {
       setLoading(false);
     }

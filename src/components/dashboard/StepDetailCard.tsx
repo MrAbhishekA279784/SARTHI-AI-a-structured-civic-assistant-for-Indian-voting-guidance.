@@ -21,8 +21,22 @@ export default function StepDetailCard({ stepId }: StepDetailCardProps) {
   const handleToggle = (itemId: string) => {
     toggleChecklistItem(step.id, itemId);
     const item = step.checklistItems.find(i => i.id === itemId);
-    if (!item?.checked) {
-      addToast('Progress saved locally', 'success');
+    const isNowChecked = !item?.checked; // Before the state updates locally
+    
+    // Save to Firestore
+    if (typeof window !== 'undefined') {
+      import('@/lib/firestore').then(({ saveChecklistItem }) => {
+        saveChecklistItem(itemId, isNowChecked).then(() => {
+          if (isNowChecked) {
+            addToast('Saved to Google Cloud ☁️', 'success');
+          }
+        });
+      }).catch(() => {});
+      
+      // Track Analytics
+      import('@/lib/analytics').then(({ trackEvent }) => {
+        trackEvent('checklist_update', { item_id: itemId, checked: isNowChecked });
+      }).catch(() => {});
     }
     
     // Auto-update step status based on checklists
@@ -32,6 +46,16 @@ export default function StepDetailCard({ stepId }: StepDetailCardProps) {
         const allChecked = updatedStep.checklistItems.every(i => i.checked);
         if (allChecked && updatedStep.status !== 'completed') {
           updateStepStatus(step.id, 'completed');
+          
+          if (typeof window !== 'undefined') {
+             import('@/lib/firestore').then(({ saveJourneyStep }) => {
+                saveJourneyStep(step.id, step.title, true);
+             }).catch(() => {});
+             
+             import('@/lib/analytics').then(({ trackEvent }) => {
+                trackEvent('journey_step_complete', { step_id: step.id });
+             }).catch(() => {});
+          }
           
           // Mark next step as in_progress
           const nextStep = useAppStore.getState().steps.find(s => s.order === step.order + 1);
@@ -63,7 +87,16 @@ export default function StepDetailCard({ stepId }: StepDetailCardProps) {
         <h4 className="text-sm font-bold text-gray-900 mb-3">{t.whatYouNeedToDo}</h4>
         <ul className="space-y-3">
           {step.checklistItems.map(item => (
-            <li key={item.id} className="flex items-start gap-3 group cursor-pointer" onClick={() => handleToggle(item.id)}>
+            <li 
+               key={item.id} 
+               className="flex items-start gap-3 group cursor-pointer" 
+               onClick={() => handleToggle(item.id)}
+               onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleToggle(item.id); } }}
+               tabIndex={0}
+               role="checkbox"
+               aria-checked={item.checked}
+               aria-label={item.label}
+            >
               <div className={`w-5 h-5 rounded flex items-center justify-center shrink-0 mt-0.5 border ${
                 item.checked ? 'bg-blue-600 border-blue-600 text-white' : 'border-gray-300 group-hover:border-blue-400'
               }`}>

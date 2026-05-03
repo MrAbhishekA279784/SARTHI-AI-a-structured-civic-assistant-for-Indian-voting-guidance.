@@ -48,28 +48,53 @@ export function findBestMatch(query: string): ScenarioData | null {
   return highest > 0.2 ? best : null;
 }
 
-export function fallbackAI(query: string) {
-  return {
-    explanation: "Please verify from official ECI sources.",
+import { trackEvent } from '@/lib/analytics';
+
+export async function fallbackAI(query: string) {
+  trackEvent('ai_query', { query_length: query?.length || 0 });
+
+  const safeFallback = {
+    explanation: "Please verify from official ECI sources. Election rules may vary.",
     steps: [
       "Visit NVSP website",
       "Check voter information",
       "Contact local election office"
     ],
     source: "ECI",
-    confidence: "low"
+    confidence: "low" as const
   };
+
+  try {
+    const res = await fetch('/api/ai', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query }),
+    });
+    
+    if (!res.ok) throw new Error('API route failed');
+    
+    const data = await res.json();
+    
+    return {
+      explanation: data.answer || safeFallback.explanation,
+      steps: Array.isArray(data.steps) ? data.steps : safeFallback.steps,
+      source: data.source || "AI-generated based on official guidelines",
+      confidence: (data.confidence || "medium") as "high"|"medium"|"low"
+    };
+  } catch (err) {
+    return safeFallback;
+  }
 }
 
-export function resolveQuery(query: string) {
+export async function resolveQuery(query: string) {
   const match = findBestMatch(query);
   if (match) {
     return match.answer;
   }
-  return fallbackAI(query);
+  return (await fallbackAI(query)).explanation;
 }
 
-export function resolveScenario(query: string): Omit<ScenarioResult, 'id' | 'userId' | 'createdAt'> {
+export async function resolveScenario(query: string): Promise<Omit<ScenarioResult, 'id' | 'userId' | 'createdAt'>> {
   const normalized = query.toLowerCase().trim();
   
   // Exact key match (from dropdown or programmatic calls)
@@ -82,7 +107,7 @@ export function resolveScenario(query: string): Omit<ScenarioResult, 'id' | 'use
     return formatResult(match, 'rules', query);
   }
   
-  const aiResult = fallbackAI(query);
+  const aiResult = await fallbackAI(query);
   
   return {
     scenarioKey: 'unknown',

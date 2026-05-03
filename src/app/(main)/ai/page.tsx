@@ -41,15 +41,22 @@ function AIPageInner() {
     }
   }, [searchParams]);
 
-  const processQuery = (query: string) => {
+  const processQuery = async (query: string) => {
     const userMessage = query.trim();
     if (!userMessage) return;
 
     setMessages(prev => [...prev, { role: 'user', content: userMessage }]);
     setLoading(true);
 
+    // Track Analytics
+    if (typeof window !== 'undefined') {
+      import('@/lib/analytics').then(({ trackEvent }) => {
+        trackEvent('ai_query', { query_length: userMessage.length });
+      }).catch(() => {});
+    }
+
     // Use the SARTHI explainer layer (wraps rule-based resolver)
-    const result = askSarthi(userMessage);
+    const result = await askSarthi(userMessage);
 
     setMessages(prev => [...prev, {
       role: 'assistant',
@@ -101,7 +108,7 @@ function AIPageInner() {
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto mb-6 space-y-6 pr-4 scrollbar-thin scrollbar-thumb-zinc-200">
+      <div className="flex-1 overflow-y-auto mb-6 space-y-6 pr-4 scrollbar-thin scrollbar-thumb-zinc-200" aria-live="polite">
         {messages.map((m, i) => (
           <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
             <div className={`max-w-[85%] flex gap-4 ${m.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
@@ -112,12 +119,29 @@ function AIPageInner() {
               </div>
               <div className="space-y-3 min-w-0">
                 {/* Main message bubble */}
-                <div className={`p-4 rounded-2xl text-sm leading-relaxed ${
+                <div className={`p-4 rounded-2xl text-sm leading-relaxed relative ${
                   m.role === 'user'
                     ? 'bg-blue-600 text-white rounded-tr-none'
                     : 'bg-white border border-zinc-200 text-zinc-800 rounded-tl-none shadow-sm'
                 }`}>
                   {m.content}
+                  
+                  {/* Source Badge */}
+                  {m.role === 'assistant' && (
+                    <div className="absolute -bottom-3 right-2 flex items-center gap-1 bg-white border border-zinc-200 px-2 py-0.5 rounded-full shadow-sm">
+                      {m.sarthi?.source === 'gemini' ? (
+                        <>
+                          <Sparkles className="w-2.5 h-2.5 text-blue-500" />
+                          <span className="text-[9px] font-bold text-zinc-500 uppercase tracking-wider">AI Answer (Gemini 1.5)</span>
+                        </>
+                      ) : (
+                        <>
+                          <ShieldCheck className="w-2.5 h-2.5 text-green-600" />
+                          <span className="text-[9px] font-bold text-green-700 uppercase tracking-wider">Verified ECI Data</span>
+                        </>
+                      )}
+                    </div>
+                  )}
                 </div>
 
                 {/* SARTHI structured response */}

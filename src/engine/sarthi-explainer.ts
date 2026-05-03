@@ -29,8 +29,8 @@ const MAX_PATTERN_HISTORY = 10;
  * Main entry point. Takes a user query, runs it through the rule-based
  * resolver, then wraps the output in a clear, structured explanation.
  */
-export function askSarthi(userQuery: string): SarthiResponse {
-  const result = resolveScenario(userQuery);
+export async function askSarthi(userQuery: string): Promise<SarthiResponse> {
+  const result = await resolveScenario(userQuery);
 
   // CASE 1: Dataset match (structured_steps provided)
   if (result.scenarioKey !== 'unknown') {
