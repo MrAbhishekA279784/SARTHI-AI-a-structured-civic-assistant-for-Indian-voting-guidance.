@@ -48,15 +48,23 @@ function AIPageInner() {
     setMessages(prev => [...prev, { role: 'user', content: userMessage }]);
     setLoading(true);
 
+    // Use the SARTHI explainer layer (wraps rule-based resolver)
+    const result = await askSarthi(userMessage);
+
     // Track Analytics
     if (typeof window !== 'undefined') {
       import('@/lib/analytics').then(({ trackEvent }) => {
-        trackEvent('ai_query', { query_length: userMessage.length });
+        trackEvent('ai_query_submitted', { 
+          length: userMessage.length,
+          source: result.source || 'gemini' 
+        });
       }).catch(() => {});
     }
 
-    // Use the SARTHI explainer layer (wraps rule-based resolver)
-    const result = await askSarthi(userMessage);
+    // Save to Firestore
+    import('@/lib/firestore').then(({ saveAIQuery }) => {
+      saveAIQuery(userMessage, result).catch(() => {});
+    }).catch(() => {});
 
     setMessages(prev => [...prev, {
       role: 'assistant',
@@ -132,12 +140,12 @@ function AIPageInner() {
                       {m.sarthi?.source === 'gemini' ? (
                         <>
                           <Sparkles className="w-2.5 h-2.5 text-blue-500" />
-                          <span className="text-[9px] font-bold text-zinc-500 uppercase tracking-wider">AI Answer (Gemini 1.5)</span>
+                          <span className="text-[9px] font-bold text-zinc-500 uppercase tracking-wider">AI Answer (Powered by Gemini)</span>
                         </>
                       ) : (
                         <>
                           <ShieldCheck className="w-2.5 h-2.5 text-green-600" />
-                          <span className="text-[9px] font-bold text-green-700 uppercase tracking-wider">Verified ECI Data</span>
+                          <span className="text-[9px] font-bold text-green-700 uppercase tracking-wider">Verified Data</span>
                         </>
                       )}
                     </div>

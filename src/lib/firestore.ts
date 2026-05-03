@@ -15,6 +15,11 @@ export async function saveJourneyStep(stepId: string, title: string, completed: 
       },
       { merge: true }
     );
+    if (typeof window !== 'undefined') {
+      import('@/lib/analytics').then(({ trackEvent }) => {
+        trackEvent("firestore_write", { type: "journey_step" });
+      }).catch(() => {});
+    }
   } catch (error) {
     console.error('Firestore saveJourneyStep error:', error);
   }
@@ -33,6 +38,11 @@ export async function saveChecklistItem(itemId: string, checked: boolean): Promi
       },
       { merge: true }
     );
+    if (typeof window !== 'undefined') {
+      import('@/lib/analytics').then(({ trackEvent }) => {
+        trackEvent("firestore_write", { type: "checklist_item" });
+      }).catch(() => {});
+    }
   } catch (error) {
     console.error('Firestore saveChecklistItem error:', error);
   }
@@ -51,6 +61,11 @@ export async function saveAIQuery(query: string, response: object): Promise<void
         askedAt: Timestamp.now()
       }
     );
+    if (typeof window !== 'undefined') {
+      import('@/lib/analytics').then(({ trackEvent }) => {
+        trackEvent("firestore_write", { type: "ai_query" });
+      }).catch(() => {});
+    }
   } catch (error) {
     console.error('Firestore saveAIQuery error:', error);
   }

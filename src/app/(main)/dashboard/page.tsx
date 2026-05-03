@@ -47,6 +47,12 @@ export default function DashboardPage() {
       fetchUserProgress().then(data => {
         if (data && (data.savedSteps.length > 0 || data.savedChecks.length > 0)) {
           setCloudSynced(true);
+          import('@/lib/analytics').then(({ trackEvent }) => {
+            trackEvent("firestore_data_loaded", {
+              steps_count: data.savedSteps.length,
+              checklist_count: data.savedChecks.length
+            });
+          }).catch(() => {});
         }
       });
       
@@ -123,15 +129,8 @@ export default function DashboardPage() {
                 <div className="flex items-center gap-2">
                   <div className={`w-2 h-2 rounded-full ${cloudSynced ? 'bg-green-500' : 'bg-amber-400'}`}></div>
                   <span className="text-sm font-semibold text-gray-900">
-                    {cloudSynced ? 'Firestore Active' : 'Local Mode'}
+                    {cloudSynced ? 'Data synced with Firebase ☁️' : 'Local Mode'}
                   </span>
-                </div>
-              </div>
-              <div className="bg-white p-3 rounded-lg border border-blue-50">
-                <p className="text-xs text-gray-500 mb-1">AI Engine</p>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-blue-500"></div>
-                  <span className="text-sm font-semibold text-gray-900">Gemini 1.5 Flash</span>
                 </div>
               </div>
               <div className="bg-white p-3 rounded-lg border border-blue-50">
@@ -141,7 +140,7 @@ export default function DashboardPage() {
                 <div className="flex items-center gap-2">
                   <div className={`w-2 h-2 rounded-full ${analyticsCount > 0 ? 'bg-purple-500 animate-pulse' : 'bg-gray-400'}`}></div>
                   <span className="text-sm font-semibold text-gray-900">
-                    {analyticsCount > 0 ? `${analyticsCount} Events Tracked` : 'Analytics Setup'}
+                    {analyticsCount > 0 ? 'Active Tracking' : 'Analytics Setup'}
                   </span>
                 </div>
               </div>
